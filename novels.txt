@@ -28,7 +28,7 @@ Dubliners; James Joyce, Joyce
 The Awakening; Kate Chopin, Chopin
 Robinson Crusoe; Daniel Defoe, Defoe
 Oliver Twist; Charles Dickens, Dickens
-Persuasian; Jane Austen, Austen
+Persuasion; Jane Austen, Austen
 Anna Karenina; Leo Tolstoy, Tolstoy
 Middlemarch; George Eliot, Eliot, Mary Ann Evans, Mary Evans, Evans
 Faust; Johann Wolfgang von Goethe, Johann von Goethe, Goethe
@@ -39,7 +39,7 @@ Lolita; Vladimir Nabokov, Nabokov
 Brave New World; Aldous Huxley, Huxley
 The Sound and the Fury; William Faulkner, William Cuthbert Faulkner, Faulkner
 Catch-22; Joseph Heller, Heller
-Darness at Noon; Arthur Koestler, Koestler
+Darkness at Noon; Arthur Koestler, Koestler
 Sons and Lovers; D. H. Lawrence, David Herbert Lawrence, D.H. Lawrence, DH Lawrence, D H Lawrence, David Lawrence, Lawrence
 The Grapes of Wrath; John Steinbeck, Steinbeck
 Under the Volcano; Malcolm Lowry, Lowry
