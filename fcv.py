@@ -17,16 +17,19 @@ def _accessCard(clue):
     return None
 
 def printStats(clue):
-    card = _accessCard(clue)
-    print card.clue
-    print 'Correct: %d, Incorrect: %d, Peeks: %d' %(card.correct, card.incorrect, card.peeks)
-
+    try:
+        card = _accessCard(clue)
+        print card.clue.upper()
+        print 'Correct: %d, Incorrect: %d, Peeks: %d' %(card.correct, card.incorrect, card.peeks)
+    except:
+        print '%s is not in the deck.' %(clue.upper())
 
 try:
     file_name = sys.argv[1] #prefix of the file that contains the deck
     if len(sys.argv[1:]) > 1:
         lookup_cards = sys.argv[2:] #get the clues of all cards for stat lookup
 except:
+    lookup_cards = []
     file_name = raw_input('Enter a .txt file name without the extension: ')
 pickle_file_name = file_name+'_deck.txt'
 
@@ -59,6 +62,7 @@ if lookup_cards:
     for luc in lookup_cards:
         print '-'*10
         printStats(luc)
+    print '\n'
     sys.exit(1)
 
 num_items = len(deck)
