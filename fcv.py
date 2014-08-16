@@ -12,7 +12,7 @@ import sys
 
 def _accessCard(clue):
     for card in deck:
-        if card.clue.upper() == clue.upper():
+        if card.clue.strip().upper() == clue.strip().upper():   
             return card
     return None
 
@@ -37,22 +37,41 @@ pickle_file_name = file_name+'_deck.txt'
 
 ## Update the deck with any new cards that may have been added
 brand_new_deck = DeckReader.createDeck(file_name+'.txt')
+new_cards = []
+removed_cards = []
 
 try:
     with open(pickle_file_name, 'rb') as f:
         try:
             deck = pickle.load(f)
             print 'Loaded old deck'
-            if len(brand_new_deck) > len(deck):
-                print 'New cards loaded into deck:'
+            for brand_new_card in brand_new_deck:
+                same = False
+                for card in deck:
+                    if brand_new_card.clue == card.clue:
+                        same = True
+                if not same: #card has been added since deck was last played
+                    deck.append(brand_new_card)
+                    new_cards.append(brand_new_card)
+                    
+            for card in deck:
+                same = False
                 for brand_new_card in brand_new_deck:
-                    same = False
-                    for card in deck:
-                        if brand_new_card.clue == card.clue:
-                            same = True
-                    if not same: #card has been added since deck was last played
-                        deck.append(brand_new_card)
-                        print '\t%s' %(brand_new_card.clue)
+                    if card.clue == brand_new_card.clue:
+                        same = True
+                if not same: #card is no longer in the modified deck
+                    deck.remove(card)
+                    removed_cards.append(card)
+                    
+            if new_cards:
+                print 'New cards:'
+                for nc in new_cards:
+                    print '\t%s' %(nc.clue)
+            if removed_cards:
+                print 'Removed cards:'
+                for rc in removed_cards:
+                    print '\t%s' %(rc.clue)
+               
         except: #deck failed to load
             deck = DeckReader.createDeck(file_name+'.txt')
             print 'Deck failed to load. Created new deck.'
@@ -78,7 +97,7 @@ num_peeks = 0
 
 limit = 0
 while limit < 1 or limit > num_items:
-    limit = input('Enter the number of cards you want to see (maximum of %s): ' %(str(num_items)))
+    limit = input('Enter the number of cards you want to see (maximum of %s): ' %(str(len(deck))))
 sample = random.sample(deck, limit)
 
 for card in sample:
