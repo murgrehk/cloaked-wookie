@@ -4,7 +4,7 @@ To use the Flashcard Viewer:
 	-run FlashcardViewer.py from Command Prompt or Terminal
 		-the deck may be specified as a command line argument, following the format
 			python flashcardviewer.py deckname
-	-when prompted, enter the name of the .txt file containing the deck you want to play (leave off the .txt extension) and the number of cards you want to play
+	-if no command line arguments are given, when prompted, enter the name of the .txt file containing the deck you want to play (leave off the .txt extension) and the number of cards you want to play
 	-you may quit answering cards at any time by entering QUIT
 	-you may see the answer without a penalty by entering PEEK
 
