@@ -17,14 +17,6 @@ def printStats(clue):
     print '%s: %s' %(card.clue, card.answers[0])
     print 'Correct: %d, Incorrect: %d, Peeks: %d' %(card.correct, card.incorrect, card.peeks)
 
-##def countLines(file_name):
-##    non_blank_count = 0
-##
-##    with open(file_name+'.txt') as infp:
-##        for line in infp:
-##           if line.strip():
-##              non_blank_count += 1
-
 file_name = raw_input('Enter a .txt file name without the extension: ')
 pickle_file_name = file_name+'_deck.txt'
 
