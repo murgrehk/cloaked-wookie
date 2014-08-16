@@ -28,6 +28,8 @@ try:
     file_name = sys.argv[1] #prefix of the file that contains the deck
     if len(sys.argv[1:]) > 1:
         lookup_cards = sys.argv[2:] #get the clues of all cards for stat lookup
+    else:
+        lookup_cards = []
 except:
     lookup_cards = []
     file_name = raw_input('Enter a .txt file name without the extension: ')
