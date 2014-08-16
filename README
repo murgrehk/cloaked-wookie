@@ -5,7 +5,7 @@ Last Modified: 8-16-14
 To use the Flashcard Viewer:
 	-install Python 2.7
 	-copy all .py files and any .txt files from the repository into the same directory
-	-run fcv.py from Command Prompt or Terminal
+	-navigate to the directory containing the files and run fcv.py from Command Prompt or Terminal
 		-the deck may be specified as a command line argument, following the format
 			python fcv.py deckname
 	-if no command line arguments are given, when prompted, enter the name of the .txt file containing the deck you want to play (leave off the .txt extension) and the number of cards you want to play
