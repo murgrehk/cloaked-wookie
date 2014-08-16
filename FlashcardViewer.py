@@ -6,18 +6,24 @@ import TabulateResults
 import pickle
 import sys
 
-def accessCard(clue):
+def _accessCard(clue):
     for card in deck:
         if card.clue.upper() == clue.upper():
             return card
     return None
 
 def printStats(clue):
-    card = accessCard(clue)
-    print '%s: %s' %(card.clue, card.answers[0])
+    card = _accessCard(clue)
+    print card.clue
     print 'Correct: %d, Incorrect: %d, Peeks: %d' %(card.correct, card.incorrect, card.peeks)
 
-file_name = raw_input('Enter a .txt file name without the extension: ')
+
+try:
+    file_name = sys.argv[1] #prefix of the file that contains the deck
+    if len(sys.argv[1:]) > 1:
+        lookup_cards = sys.argv[2:] #get the clues of all cards for stat lookup
+except:
+    file_name = raw_input('Enter a .txt file name without the extension: ')
 pickle_file_name = file_name+'_deck.txt'
 
 ## Update the deck with any new cards that may have been added
@@ -29,6 +35,7 @@ try:
             deck = pickle.load(f)
             print 'Loaded old deck'
             if len(brand_new_deck) > len(deck):
+                print 'New cards loaded into deck:'
                 for brand_new_card in brand_new_deck:
                     same = False
                     for card in deck:
@@ -36,14 +43,19 @@ try:
                             same = True
                     if not same: #card has been added since deck was last played
                         deck.append(brand_new_card)
-                        print brand_new_card.clue
-                print 'New cards loaded into deck'
+                        print '\t%s' %(brand_new_card.clue)
         except: #deck failed to load
             deck = DeckReader.createDeck(file_name+'.txt')
-            print 'Created new deck'
+            print 'Deck failed to load. Created new deck.'
 except: #deck file doesn't exist
     deck = DeckReader.createDeck(file_name+'.txt')
-    print 'Created new deck kjdhfksd f'
+    print 'File not found. Created new deck.'
+
+if lookup_cards:
+    for luc in lookup_cards:
+        print '-'*10
+        printStats(luc)
+    sys.exit(1)
 
 num_items = len(deck)
     

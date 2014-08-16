@@ -114,3 +114,6 @@ Foucault’s Pendulum; Umberto Eco, Eco
 The Island of the Day Before; Umberto Eco, Eco
 Atlas Shrugged; Ayn Rand, Rand
 The Fountainhead; Ayn Rand, Rand
+Nicholas Nickleby; Charles Dickens, Dickens
+The Pickwick Papers; Charles Dickens, Dickens
+The Three Musketeers; Alexandre Dumas, Dumas
