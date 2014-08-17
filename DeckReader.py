@@ -11,11 +11,15 @@ def createDeck(file_name):
         for line in f:
             line = line.strip()
             pair = line.split(';')
-            clue = pair[0].strip()
-            answers = pair[1].strip().upper().split(',')
-            answers = [element.strip() for element in answers]
-
-            card = Card.Card(clue, answers)
+            
+            if pair == line: #no semicolon
+                card = None           
+            else:
+                clue = pair[0].strip()
+                answers = pair[1].strip().upper().split(',')
+                answers = [element.strip() for element in answers]
+                card = Card.Card(clue, answers)
+                
             deck.append(card)
 
     return deck
