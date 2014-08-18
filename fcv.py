@@ -24,10 +24,16 @@ def printStats(clue):
     except:
         print '%s is not in the deck.' %(clue.upper())
 
+limit = 0
+
 try:
     file_name = sys.argv[1] #prefix of the file that contains the deck
-    if len(sys.argv[1:]) > 1:
-        lookup_cards = sys.argv[2:] #get the clues of all cards for stat lookup
+    if len(sys.argv[1:]) > 1: #there are command line arguments after the name of the deck
+        try:
+            limit = int(sys.argv[2]) #if next argument is an int, it's the limit
+            lookup_cards = []
+        except:
+            lookup_cards = sys.argv[2:] #get the clues of all cards for stat lookup
     else:
         lookup_cards = []
 except:
@@ -95,7 +101,7 @@ num_attempts = 0
 num_correct = 0
 num_peeks = 0
 
-limit = 0
+#limit = 0
 while limit < 1 or limit > num_items:
     limit = input('Enter the number of cards you want to see (maximum of %s): ' %(str(len(deck))))
 sample = random.sample(deck, limit)

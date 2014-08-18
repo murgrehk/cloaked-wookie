@@ -12,7 +12,7 @@ def createDeck(file_name):
             line = line.strip()
             pair = line.split(';')
             
-            if pair == line: #no semicolon
+            if pair[0] == line: #no semicolon
                 card = None           
             else:
                 clue = pair[0].strip()
