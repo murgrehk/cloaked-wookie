@@ -2,7 +2,7 @@
 
 ## Author: Seth Ebner
 ## Created 8-14-14
-## Modified: 8-16-14
+## Modified: 8-18-14
 
 import random
 import DeckReader
