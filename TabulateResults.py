@@ -1,23 +1,23 @@
-# Tabulate results
-## Determine overall performance on a specified deck of flashcards
+# Tabulate Results
+
+## Determines overall performance on a specified deck of flashcards
 
 def tabulate(file_name):
-    ''' Compiles the number of attempts, correct reponses, and peeks
+    ''' Compiles the number of attempts, correct responses, and peeks
         from a results file.
     '''
-    attempts = 0
-    correct = 0
-    peeks = 0
+
+    results = []
+
     with open(file_name) as f:
         for line in f:
-            result = line.split('\t')
-            a = int(result[0])
-            c = int(result[1])
-            p = int(result[2])
-
-            attempts += a
-            correct += c
-            peeks += p
+            result = [int(elem) for elem in line.split('\t')]
+            results.append(result)
     f.close()
 
-    return attempts, correct, peeks
+    if len( results ) > 0:
+        [attempts, correct, incorrect, peeks] = list(map(sum, zip(*results)))
+    else:
+        [attempts, correct, incorrect, peeks] = [0, 0, 0, 0]
+
+    return { 'attempts' : attempts, 'correct' : correct, 'incorrect' : incorrect, 'peeks' : peeks }
