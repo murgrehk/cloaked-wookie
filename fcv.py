@@ -1,164 +1,163 @@
 # Flashcard Viewer
 
-## Author: Seth Ebner
-## Created 8-14-14
-## Modified: 8-18-14
-
-import random
-import DeckReader
-import TabulateResults
 import pickle
+import random
 import sys
 
-def _accessCard(clue):
-    for card in deck:
-        if card.clue.strip().upper() == clue.strip().upper():   
-            return card
-    return None
+import DeckReader
+import TabulateResults
 
-def printStats(clue):
-    try:
-        card = _accessCard(clue)
-        print card.clue.upper()
-        print 'Correct: %d, Incorrect: %d, Peeks: %d' %(card.correct, card.incorrect, card.peeks)
-    except:
-        print '%s is not in the deck.' %(clue.upper())
+def _get_card_by_clue(clue):
+	for card in deck:
+		if card.clue.upper() == clue.strip().upper():
+			return card
+	return None
 
-limit = 0
+def _get_stats_by_clue(clue):
+	card = _get_card_by_clue(clue)
+	if card != None:
+		return (card.correct, card.incorrect, card.peeks)
+	else:
+		return None
 
-try:
-    file_name = sys.argv[1] #prefix of the file that contains the deck
-    if len(sys.argv[1:]) > 1: #there are command line arguments after the name of the deck
-        try:
-            limit = int(sys.argv[2]) #if next argument is an int, it's the limit
-            lookup_cards = []
-        except:
-            lookup_cards = sys.argv[2:] #get the clues of all cards for stat lookup
-    else:
-        lookup_cards = []
-except:
-    lookup_cards = []
-    file_name = raw_input('Enter a .txt file name without the extension: ')
-pickle_file_name = file_name+'_deck.txt'
+def _check_file_exists(filename):
+	pass
 
-## Update the deck with any new cards that may have been added
-brand_new_deck = DeckReader.createDeck(file_name+'.txt')
-new_cards = []
-removed_cards = []
+def print_cards(card_list):
+	for card in card_list:
+		print( '\t{}'.format(card.clue) )
 
-try:
-    with open(pickle_file_name, 'rb') as f:
-        try:
-            deck = pickle.load(f)
-            print 'Loaded old deck'
-            for brand_new_card in brand_new_deck:
-                same = False
-                for card in deck:
-                    if brand_new_card.clue == card.clue:
-                        same = True
-                if not same: #card has been added since deck was last played
-                    deck.append(brand_new_card)
-                    new_cards.append(brand_new_card)
-                    
-            for card in deck:
-                same = False
-                for brand_new_card in brand_new_deck:
-                    if card.clue == brand_new_card.clue:
-                        same = True
-                if not same: #card is no longer in the modified deck
-                    deck.remove(card)
-                    removed_cards.append(card)
-                    
-            if new_cards:
-                print 'New cards:'
-                for nc in new_cards:
-                    print '\t%s' %(nc.clue)
-            if removed_cards:
-                print 'Removed cards:'
-                for rc in removed_cards:
-                    print '\t%s' %(rc.clue)
-               
-        except: #deck failed to load
-            deck = DeckReader.createDeck(file_name+'.txt')
-            print 'Deck failed to load. Created new deck.'
-except: #deck file doesn't exist
-    deck = DeckReader.createDeck(file_name+'.txt')
-    print 'File not found. Created new deck.'
+def print_answer(card):
+	print( 'The answer is {}.\n'.format(card.answers[0].upper()) )
 
-if lookup_cards:
-    for luc in lookup_cards:
-        print '-'*10
-        printStats(luc)
-    print '\n'
-    sys.exit(1)
+def print_instructions():
+	print( 'Enter <QUIT> to close the program.' )
+	print( 'Enter <PEEK> to see the answer.' )
 
-num_items = len(deck)
-    
-print 'Enter <QUIT> to close the program.'
-print 'Enter <PEEK> to see the answer.'
+def get_deck_name():
+	return input( 'Which deck would you like to use? ' )
 
-num_attempts = 0
-num_correct = 0
-num_peeks = 0
+def get_num_cards_this_session(minimum, maximum):
+	limit = 0
+	while limit < minimum or limit > maximum:
+		limit = input( 'How many cards would you like to see? (between {} and {}) '.format(minimum, maximum) )
+		try:
+			limit = int(limit)
+		except:
+			limit = 0
+	return limit
 
-#limit = 0
-while limit < 1 or limit > num_items:
-    limit = input('Enter the number of cards you want to see (maximum of %s): ' %(str(len(deck))))
-sample = random.sample(deck, limit)
+def _parse_args(args):
+	pass
 
-for card in sample:
-    response = raw_input(card.clue+'? ')
-    if response.upper() == 'QUIT':
-        output = open(file_name+'_deck.txt', 'wb')
-        try:
-            pickle.dump(deck, output)
-            print 'Pickled successfully'
-        except:
-            print 'Failed to pickle'
-        output.close()
-        break
-    elif response.upper() == 'PEEK':
-        card.peeks += 1
-        num_peeks += 1
-        print 'The answer is', card.answers[0].upper() + '.\n'
-    else:
-        num_attempts += 1
-        if response.upper() in card.answers:
-            card.correct += 1
-            num_correct += 1
-            print "Correct! Nice job.\n"
-        else:
-            card.incorrect += 1
-            print "Incorrect. The correct answer is %s.\n" %(card.answers[0].title())
+def play_card(card, session_stats):
+	response = input( '{}? '.format(card.clue) ).upper()
+	if response == 'QUIT':
+		pass
+	elif response == 'PEEK':
+		card.peeks += 1
+		session_stats['peeks'] += 1
+		print_answer(card)
+	else:
+		session_stats['attempts'] += 1
+		if response in card.answers:
+			card.correct += 1
+			session_stats['correct'] += 1
+		else:
+			card.incorrect += 1
+			session_stats['incorrect'] += 1
+			print_answer(card)
+	return session_stats
 
-output = open(pickle_file_name, 'wb')
-try:
-    pickle.dump(deck, output)
-    print 'Pickled successfully'
-except:
-    print 'Pickling failed'
-output.close()
+def load_and_update_deck(pickle_filename, deck_filename):
+	if not _check_file_exists( pickle_filename ):
+		pass
+	if not _check_file_exists( deck_filename ):
+		pass
 
-print '-'*20
-print '-'*20
+	try:
+		with open( pickle_filename, 'rb' ) as pickle_file, open( deck_filename, 'rb' ) as deck_file:
+			pickled_deck	= pickle.load( pickle_file )
+			deck			= DeckReader.create_deck( deck_file.readlines() )
+			common_cards 	= set([card for card in pickled_deck if card.clue in set([pcard.clue for pcard in pickled_deck]) & set([dcard.clue for dcard in deck])])
+			new_cards 		= set([card for card in deck if card.clue in set([dcard.clue for dcard in deck]) - set([pcard.clue for pcard in pickled_deck])])
+			removed_cards 	= set([card for card in pickled_deck if card.clue in set([pcard.clue for pcard in pickled_deck]) - set([dcard.clue for dcard in deck])])
+	except:
+		# use the provided file as the source of a brand new deck
+		try:
+			with open( deck_filename, 'rb' ) as deck_file:
+				deck 			= DeckReader.create_deck( deck_file.readlines() )
+				common_cards 	= []
+				new_cards 		= deck
+				removed_cards 	= []
+		except:
+			deck 			= []
+			common_cards 	= []
+			new_cards 		= []
+			removed_cards 	= []
 
-#results are written as ATTEMPTS    CORRECT    PEEKS
-if num_attempts >= 0:
-    results_file = file_name+'_results.txt'
-    with open(results_file, 'a') as myfile:
-        stats = [str(num_attempts), str(num_correct), str(num_peeks)]
-        myfile.write('\t'.join(stats) + '\n')
-    myfile.close()
-raw_input('Press <ENTER> to see results')
-print '\n'
+	return (deck, common_cards, new_cards, removed_cards)
 
-# gather cumulative results for the deck just used
-stats = TabulateResults.tabulate(results_file)
-attempts, correct, peeks = stats
+def pickle_deck(deck, pickle_filename):
+	with open( pickle_filename, 'wb' ) as output:
+		try:
+			pickle.dump( deck, output )
+		except:
+			print( 'Could not pickle deck.' )
 
-print '%d correct of %d attempts.\n' %(num_correct, num_attempts)
-print "\nCUMULATIVE RESULTS FOR THIS DECK"
-print '%d correct of %d attempts (%s peeks)' %(correct, attempts, peeks)
-if attempts > 0:
-    print '{percent:.2%}'.format(percent=1.0*correct/attempts), "accuracy\n" #change the 2 to adjust precision
-raw_input('Press <ENTER> to end')
+def write_results(session_stats, results_filename):
+	with open( results_filename, 'a' ) as results_file:
+		try:
+			stats = [ session_stats['attempts'], session_stats['correct'], session_stats['incorrect'], session_stats['peeks'] ]
+			results_file.write( '{}\n'.format('\t'.join([str(stat) for stat in stats])) )
+		except:
+			print( 'Could not write results to file.' )
+
+def print_results(stats, session_stats):
+	print( '{} correct of {} attempts.\n'.format(session_stats['correct'], session_stats['attempts']) )
+	print( 'CUMULATIVE RESULTS FOR THIS DECK' )
+	print( '{} correct of {} attempts ({} peeks)'.format(stats['correct'], stats['attempts'], stats['peeks']) )
+	if stats['attempts'] > 0:
+		print( '{percent:.2%}'.format(percent=1.0*stats['correct']/stats['attempts']) )
+
+def main():
+	deck_name 			= get_deck_name()
+	deck_filename 		= '{}.txt'.format(deck_name)
+	pickle_filename 	= '{}_pickled.txt'.format(deck_name)
+	results_filename	= '{}_results.txt'.format(deck_name)
+
+	[deck, common_cards, new_cards, removed_cards] = load_and_update_deck( pickle_filename, deck_filename )
+
+	if new_cards:
+		print( 'New cards:' )
+		print_cards( new_cards )
+	if removed_cards:
+		print( 'Removed cards:' )
+		print_cards( removed_cards )
+	
+	print()
+	print_instructions()
+	print()
+
+	deck_size = len( deck )
+	num_cards = get_num_cards_this_session( 1, deck_size )
+
+	session 		= random.sample( deck, num_cards )
+	session_stats 	= { 'attempts' : 0, 'correct' : 0, 'incorrect' : 0, 'peeks' : 0 }
+	for card in session:
+		session_stats = play_card( card, session_stats )
+
+	pickle_deck( deck, pickle_filename )
+	write_results( session_stats, results_filename )
+
+	input( '\nPress <ENTER> to see results' )
+
+	stats = TabulateResults.tabulate( results_filename )
+	print_results( stats, session_stats )
+
+	input( 'Press <ENTER> to end' )
+	print()
+
+
+if __name__ == '__main__':
+	main()

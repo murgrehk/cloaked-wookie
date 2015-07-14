@@ -1,25 +1,25 @@
-#Deck Reader
-## Reads the lines in a flashcard file and converts it into a deck
+# Deck Reader
+
+## Reads the lines in a flashcard file and converts them into a deck
 
 import Card
 
-def createDeck(file_name):
-    deck = []
-    num_cards = 0
+def create_deck(file_data):
+    ''' Creates a deck by creating cards with clues and answers from
+        a supplied file.
+    '''
 
-    with open(file_name) as f:
-        for line in f:
-            line = line.strip()
-            pair = line.split(';')
-            
-            if pair[0] == line: #no semicolon
-                card = None           
-            else:
-                clue = pair[0].strip()
-                answers = pair[1].strip().upper().split(',')
-                answers = [element.strip() for element in answers]
-                card = Card.Card(clue, answers)
-                
-            deck.append(card)
+    deck = []
+
+    for line in file_data:
+        line            = line.decode().strip()
+        clue, answers   = line.split(';')
+        
+        clue            = clue.strip()
+        answers         = answers.strip().upper().split(',')
+        answers         = [answer.strip() for answer in answers]
+
+        card            = Card.Card(clue, answers)
+        deck.append(card)
 
     return deck
