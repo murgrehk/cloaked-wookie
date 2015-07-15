@@ -51,9 +51,10 @@ def _parse_args(args):
 	pass
 
 def play_card(card, session_stats):
-	response = input( '{}? '.format(card.clue) ).upper()
+	response 			= input( '{}? '.format(card.clue) ).upper()
+	continue_playing 	= True
 	if response == 'QUIT':
-		pass
+		continue_playing = False
 	elif response == 'PEEK':
 		card.peeks += 1
 		session_stats['peeks'] += 1
@@ -67,7 +68,7 @@ def play_card(card, session_stats):
 			card.incorrect += 1
 			session_stats['incorrect'] += 1
 			print_answer(card)
-	return session_stats
+	return session_stats, continue_playing
 
 def load_and_update_deck(pickle_filename, deck_filename):
 	if not _check_file_exists( pickle_filename ):
@@ -142,10 +143,12 @@ def main():
 	deck_size = len( deck )
 	num_cards = get_num_cards_this_session( 1, deck_size )
 
-	session 		= random.sample( deck, num_cards )
-	session_stats 	= { 'attempts' : 0, 'correct' : 0, 'incorrect' : 0, 'peeks' : 0 }
+	session 			= random.sample( deck, num_cards )
+	session_stats 		= { 'attempts' : 0, 'correct' : 0, 'incorrect' : 0, 'peeks' : 0 }
+	continue_playing 	= True
 	for card in session:
-		session_stats = play_card( card, session_stats )
+		if continue_playing:
+			session_stats, continue_playing = play_card( card, session_stats )
 
 	pickle_deck( deck, pickle_filename )
 	write_results( session_stats, results_filename )
