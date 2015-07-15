@@ -1,0 +1,26 @@
+NH4 (1+); ammonium
+H3O (1+); hydronium
+NO (1+); nitrosyl
+VO (2+); vanadyl
+OH (1-); hydroxide
+CN (1-); cyanide
+MnO4 (1-); permanganate
+NO2 (1-); nitrite
+NO3 (1-); nitrate
+ClO (1-); hypochlorite
+ClO2 (1-); chlorite
+ClO3 (1-); chlorate
+ClO4 (1-); perchlorate
+HCO3 (1-); bicarbonate, hydrogen carbonate
+H2PO4 (1-); dihydrogen phosphate
+CH3COO (1-); acetate
+CrO4 (2-); chromate
+Cr2O7 (2-); dichromate
+SO3 (2-); sulfite
+SO4 (2-); sulfate
+CO3 (2-); carbonate
+HPO4 (2-); hydrogen phosphate
+C2O4 (2-); oxalate
+AsO3 (3-); arsenite
+AsO4 (3-); arsenate
+PO4 (3-); phosphate

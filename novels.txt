@@ -118,3 +118,10 @@ Nicholas Nickleby; Charles Dickens, Dickens
 The Pickwick Papers; Charles Dickens, Dickens
 The Three Musketeers; Alexandre Dumas, Dumas
 Lucky Jim; Kingsley Amis, Amis
+The Jungle; Upton Sinclair, Sinclair
+Bleak House; Charles Dickens, Dickens
+The Mayor of Casterbridge; Thomas Hardy, Hardy
+Jude the Obscure; Thomas Hardy, Hardy
+Far from the Madding Crowd; Thomas Hardy, Hardy
+Tess of the d’Urbervilles; Thomas Hardy, Hardy
+World Enough and Time; Robert Penn Warren, Robert Warren, Warren

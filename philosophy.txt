@@ -1,0 +1,81 @@
+The Wealth of Nations; Adam Smith, Smith
+On Sense and Reference; Gottlob Frege, Frege
+Tractatus Logico-Philosophicus; Ludwig Wittgenstein, Wittgenstein
+Philosophical Investigations; Ludwig Wittgenstein, Wittgenstein
+The Theory of Moral Sentiments; Adam Smith, Smith
+Leviathan; Thomas Hobbes, Hobbes
+Nicomachean Ethics; Aristotle
+On the Nature of Things; Lucretius
+Guide for the Perplexed; Moses Maimonides, Maimonides, Moshe ben Maimon
+The Incoherence of the Incoherence; Averroes
+Summa contra Gentiles; Thomas Aquinas, Aquinas
+Summa Theologica; Thomas Aquinas, Aquinas
+Advancement of Learning; Sir Francis Bacon, Francis Bacon, Bacon
+Novum Organum; Sir Francis Bacon, Francis Bacon, Bacon
+Rules for the Direction of the Mind; Rene Descartes, Descartes
+Discourse on Method; Rene Descartes, Descartes
+Meditations on First Philosophy; Rene Descartes, Descartes
+Objections Against the Meditations and Replies; Rene Descartes, Descartes
+Provincial Letters; Blaise Pascal, Pascal
+Pensees; Blaise Pascal, Pascal
+Discourse on Metaphysics; Gottfried Leibniz, Leibniz
+Monadology; Gottfried Leibniz, Leibniz
+New Essays Concerning Human Understanding; Gottfried Leibniz, Leibniz
+An Essay Concerning Human Understanding; John Locke, Locke
+Two Treatises of Government; John Locke, Locke
+Treatise Concerning the Principles of Human Knowledge; George Berkeley, Berkeley
+A Treatise of Human Nature; David Hume, Hume
+An Enquiry Concerning Human Understanding; David Hume, Hume
+The Social Contract; Jean-Jacques Rousseau, Rousseau
+Emile; Jean-Jacques Rousseau, Rousseau
+Critique of Pure Reason; Immanuel Kant, Kant
+Critique of Practical Reason; Immanuel Kant, Kant
+Groundwork of the Metaphysic of Morals; Immanuel Kant, Kant
+Phenomenology of Spirit; Georg Wilhelm Friedrich Hegel, GWF Hegel, Hegel
+The Philosophy of Right; Georg Wilhelm Friedrich Hegel, GWF Hegel, Hegel
+The Philosophy of History; Georg Wilhelm Friedrich Hegel, GWF Hegel, Hegel
+The World as Will and Representation; Arthur Schopenhauer, Schopenhauer
+Either/Or; Soren Kierkegaard, Kierkegaard
+Fear and Trembling; Soren Kierkegaard, Kierkegaard
+On Liberty; John Stuart Mill, JS Mill, Mill
+Utilitarianism; John Stuart Mill, JS Mill, Mill
+A System of Logic; John Stuart Mill, JS Mill, Mill
+The Subjection of Women; John Stuart Mill, JS Mill, Mill
+Thus Spoke Zarathustra; Friedrich Nietzsche, Nietzsche
+On the Genealogy of Morals; Friedrich Nietzsche, Nietzsche
+Logic of Relatives; Charles Sanders Peirce, CS Peirce, Peirce
+The Problems of Philosophy; Bertrand Russell, Russell
+A Defence of Common Sense; GE Moore, G.E. Moore, G. E. Moore, Moore
+The Refutation of Idealism; GE Moore, G.E. Moore, G. E. Moore, Moore
+Experience and Nature; John Dewey, Dewey
+Pragmatism; William James, James
+Process and Reality; Alfred North Whitehead, Alfred Whitehead, Whitehead
+Being and Time; Martin Heidegger, Heidegger
+Two Dogmas of Empiricism; WVO Quine, W.V.O. Quine, W. V. O. Quine, Quine
+On What There Is; WVO Quine, W.V.O. Quine, W. V. O. Quine, Quine
+Naming and Necessity; Saul Kripke, Kripke
+Reasons and Persons; Derek Parfit, Parfit
+Logical Investigations; Edmund Husserl, Husserl
+The Concept of Mind; Gilbert Ryle, Ryle
+Empiricism and the Philosophy of Mind; Wilfrid Sellars, Sellars
+The Logic of Scientific Discovery; Karl Popper, Popper
+The Origin of the Work of Art; Martin Heidegger, Heidegger
+Aesthetic Theory; Theodor Adorno, Adorno
+Critique of Judgment; Immanuel Kant, Kant
+After Virtue; Alasdair MacIntyre, MacIntyre
+Principia Ethica; GE Moore, G.E. Moore, G. E. Moore, Moore
+On What Matters; Derek Parfit, Parfit
+The Principles of Morals and Legislation; Jeremy Bentham, Bentham
+Being and Nothingness; Jean-Paul Sartre, Sartre
+Social Choice and Individual Values; Kenneth Arrow, Arrow
+Wage Labour and Capital; Karl Marx, Marx
+The Ultimate Foundation of Economic Science; Ludwig von Mises, Mises
+The Open Society and Its Enemies; Karl Popper, Popper
+A Theory of Justice; John Rawls, Rawls
+Anarchy, State, and Utopia; Robert Nozick, Nozick
+How to Make Our Ideas Clear; Charles Sanders Peirce, CS Peirce, Peirce
+On Formally Undecidable Propositions of Principia Mathematica and Related Systems; Kurt Godel, Godel
+Semantical Considerations on Modal Logic; Saul Kripke, Kripke
+The Concept of Truth; Alfred Tarski, Tarski
+On Denoting; Bertrand Russell, Russell
+Of Grammatology; Jacques Derrida, Derrida
