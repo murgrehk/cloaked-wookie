@@ -1,39 +1,27 @@
 Seth Ebner
-Created: 8-16-14
-Last Modified: 8-18-14
+Created: 16 August 2014
+Last Modified: 14 July 2015
 
 To use the Flashcard Viewer:
-	-install Python 2.7
-	-copy all .py files and any .txt files from the repository into the same directory
-	-navigate to the directory containing the files and run fcv.py from Command Prompt or Terminal
-		-the deck may be specified as a command line argument, following the format
+	1. Clone the repository
+	2. Run fcv.py from the command line
+	3. When prompted, enter the name of the .txt file containing the deck you want to play (leave off the .txt extension) and the number of cards you want to play
 
-			python fcv.py deckname
-
-		-the number of cards you want to play may also be entered as a command line argument following the name of the deck, following the format
-
-			python fcv.py deckname number
-
-	-if no command line arguments are given, when prompted, enter the name of the .txt file containing the deck you want to play (leave off the .txt extension) and the number of cards you want to play
-	-you may quit answering cards at any time by entering QUIT
-	-you may see the answer without a penalty by entering PEEK
+	Note:
+		-You may quit answering cards at any time by entering QUIT
+		-You may see the answer without a penalty by entering PEEK
 
 To add a deck:
-	-create a .txt file in the same directory as the rest of the files
+	1. Create a .txt file in the same directory as the rest of the files
 
 To add cards to a deck:
-	-open the .txt file corresponding to the deck
-	-add the card’s clue and answers on a new line, following the format
+	1. Open the .txt file corresponding to the deck
+	2. Add the card’s clue and answers on a new line, following the format
 
-		CLUE; ANSWERS
+		CLUE; ANSWER_1, ANSWER_2
 
-	-answers are separated by commas, and the preferred answer is given first
-	-save the file
-	-upon using the modified deck, the Flashcard Viewer should note any new cards that were added
+	3. Save the file
 
-To look up the statistics of a card:
-	-run the Flashcard Viewer with the deck and the clue of any card in that deck as command line arguments, following the format (making sure the clues are in double-quotes)
-
-		python fcv.py deckname “clue1” “clue2”
-
-	-the statistics of any cards entered as command line arguments will be printed
+	Note:
+		-Answers are separated by commas, and the preferred answer is given first
+		-Upon using the modified deck, the Flashcard Viewer should note any cards that were added or removed
