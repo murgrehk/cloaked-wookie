@@ -12,7 +12,7 @@ To use the Flashcard Viewer:
 	-You may see the answer without a penalty by entering PEEK
 
 To add a deck:
-1. Create a .txt file in the same directory as the rest of the files
+1. Create a .txt file in the Decks directory
 
 To add cards to a deck:
 1. Open the .txt file corresponding to the deck
