@@ -51,8 +51,8 @@ def _parse_args(args):
 	pass
 
 def play_card(card, session_stats):
-	response			= input( '{}? '.format(card.clue) ).upper()
-	continue_playing 	= True
+	response = input( '{}? '.format(card.clue) ).upper()
+	continue_playing = True
 	if response == 'QUIT':
 		continue_playing = False
 	elif response == 'PEEK':
@@ -78,24 +78,24 @@ def load_and_update_deck(pickle_filename, deck_filename):
 
 	try:
 		with open( pickle_filename, 'rb' ) as pickle_file, open( deck_filename, 'rb' ) as deck_file:
-			pickled_deck	= pickle.load( pickle_file )
-			deck			= DeckReader.create_deck( deck_file.readlines() )
-			common_cards	= set([card for card in pickled_deck if card.clue in set([pcard.clue for pcard in pickled_deck]) & set([dcard.clue for dcard in deck])])
-			new_cards		= set([card for card in deck if card.clue in set([dcard.clue for dcard in deck]) - set([pcard.clue for pcard in pickled_deck])])
-			removed_cards	= set([card for card in pickled_deck if card.clue in set([pcard.clue for pcard in pickled_deck]) - set([dcard.clue for dcard in deck])])
+			pickled_deck = pickle.load( pickle_file )
+			deck = DeckReader.create_deck( deck_file.readlines() )
+			common_cards = set([card for card in pickled_deck if card.clue in set([pcard.clue for pcard in pickled_deck]) & set([dcard.clue for dcard in deck])])
+			new_cards = set([card for card in deck if card.clue in set([dcard.clue for dcard in deck]) - set([pcard.clue for pcard in pickled_deck])])
+			removed_cards = set([card for card in pickled_deck if card.clue in set([pcard.clue for pcard in pickled_deck]) - set([dcard.clue for dcard in deck])])
 	except:
 		# use the provided file as the source of a brand new deck
 		try:
 			with open( deck_filename, 'rb' ) as deck_file:
-				deck            = DeckReader.create_deck( deck_file.readlines() )
-				common_cards 	= []
-				new_cards		= deck
-				removed_cards 	= []
+				deck = DeckReader.create_deck( deck_file.readlines() )
+				common_cards = []
+				new_cards = deck
+				removed_cards = []
 		except:
-			deck            = []
-			common_cards 	= []
-			new_cards		= []
-			removed_cards 	= []
+			deck = []
+			common_cards = []
+			new_cards = []
+			removed_cards = []
 			print( 'Could not find that deck.....' )
 			sys.exit( 1 )
 
@@ -124,10 +124,10 @@ def print_results(stats, session_stats):
 		print( '{percent:.2%}'.format(percent=1.0*stats['correct']/stats['attempts']) )
 
 def main():
-	deck_name           = get_deck_name()
-	deck_filename 		= './Decks/{}.txt'.format(deck_name)
-	pickle_filename 	= './Pickles/{}_pickled.txt'.format(deck_name)
-	results_filename	= './Results/{}_results.txt'.format(deck_name)
+	deck_name = get_deck_name()
+	deck_filename = './Decks/{}.txt'.format(deck_name)
+	pickle_filename = './Pickles/{}_pickled.txt'.format(deck_name)
+	results_filename = './Results/{}_results.txt'.format(deck_name)
 
 	[deck, common_cards, new_cards, removed_cards] = load_and_update_deck( pickle_filename, deck_filename )
 
@@ -145,9 +145,9 @@ def main():
 	deck_size = len( deck )
 	num_cards = get_num_cards_this_session( 1, deck_size )
 
-	session             = random.sample( deck, num_cards )
-	session_stats 		= { 'attempts' : 0, 'correct' : 0, 'incorrect' : 0, 'peeks' : 0 }
-	continue_playing 	= True
+	session = random.sample( deck, num_cards )
+	session_stats = { 'attempts' : 0, 'correct' : 0, 'incorrect' : 0, 'peeks' : 0 }
+	continue_playing = True
 	for card in session:
 		if continue_playing:
 			session_stats, continue_playing = play_card( card, session_stats )
