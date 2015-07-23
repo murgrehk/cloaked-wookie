@@ -1,12 +1,12 @@
 # Deck Reader
 
-## Reads the lines in a flashcard file and converts them into a deck
+## Reads the lines of flashcard data and converts them into a deck
 
 import Card
 
 def create_deck(file_data):
     ''' Creates a deck by creating cards with clues and answers from
-        a supplied file.
+        supplied file data.
     '''
 
     deck = []
