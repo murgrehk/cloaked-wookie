@@ -96,6 +96,8 @@ def load_and_update_deck(pickle_filename, deck_filename):
 			common_cards 	= []
 			new_cards 		= []
 			removed_cards 	= []
+			print( 'Could not find that deck.....' )
+			sys.exit( 1 )
 
 	return (deck, common_cards, new_cards, removed_cards)
 
@@ -123,9 +125,9 @@ def print_results(stats, session_stats):
 
 def main():
 	deck_name 			= get_deck_name()
-	deck_filename 		= '{}.txt'.format(deck_name)
-	pickle_filename 	= '{}_pickled.txt'.format(deck_name)
-	results_filename	= '{}_results.txt'.format(deck_name)
+	deck_filename 		= './Decks/{}.txt'.format(deck_name)
+	pickle_filename 	= './Pickles/{}_pickled.txt'.format(deck_name)
+	results_filename	= './Results/{}_results.txt'.format(deck_name)
 
 	[deck, common_cards, new_cards, removed_cards] = load_and_update_deck( pickle_filename, deck_filename )
 
