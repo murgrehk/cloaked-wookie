@@ -51,7 +51,8 @@ def _parse_args(args):
 	pass
 
 def play_card(card, session_stats):
-	response = input( '{}? '.format(card.clue) ).upper()
+	response = input( '{}? [C:{} I:{} P:{} LS:{}] '.format(card.clue, card.correct, card.incorrect, card.peeks, card.sessions_since_last_seen) ).upper()
+	card.sessions_since_last_seen = 0
 	continue_playing = True
 	if response == 'QUIT':
 		continue_playing = False
@@ -99,7 +100,7 @@ def load_and_update_deck(pickle_filename, deck_filename):
 			print( 'Could not find that deck.....' )
 			sys.exit( 1 )
 
-	return (deck, common_cards, new_cards, removed_cards)
+	return (deck, pickled_deck, common_cards, new_cards, removed_cards)
 
 def pickle_deck(deck, pickle_filename):
 	with open( pickle_filename, 'wb' ) as output:
@@ -123,13 +124,16 @@ def print_results(stats, session_stats):
 	if stats['attempts'] > 0:
 		print( '{percent:.2%}'.format(percent=1.0*stats['correct']/stats['attempts']) )
 
+def sample(deck, num_cards):
+	return random.sample( deck, num_cards )
+
 def main():
 	deck_name = get_deck_name()
 	deck_filename = '../Decks/{}.txt'.format(deck_name)
 	pickle_filename = '../Pickles/{}_pickled.txt'.format(deck_name)
 	results_filename = '../Results/{}_results.txt'.format(deck_name)
 
-	[deck, common_cards, new_cards, removed_cards] = load_and_update_deck( pickle_filename, deck_filename )
+	[deck, pickled_deck, common_cards, new_cards, removed_cards] = load_and_update_deck( pickle_filename, deck_filename )
 
 	if new_cards:
 		print( 'New cards:' )
@@ -142,17 +146,21 @@ def main():
 	print_instructions()
 	print()
 
-	deck_size = len( deck )
+	deck_size = len( pickled_deck )
 	num_cards = get_num_cards_this_session( 1, deck_size )
 
-	session = random.sample( deck, num_cards )
+	for card in pickled_deck:
+		card.sessions_since_last_seen += 1
+
+	# session = random.sample( pickled_deck, num_cards )
+	session = sample( pickled_deck, num_cards )
 	session_stats = { 'attempts' : 0, 'correct' : 0, 'incorrect' : 0, 'peeks' : 0 }
 	continue_playing = True
 	for card in session:
 		if continue_playing:
 			session_stats, continue_playing = play_card( card, session_stats )
 
-	pickle_deck( deck, pickle_filename )
+	pickle_deck( pickled_deck, pickle_filename )
 	write_results( session_stats, results_filename )
 
 	input( '\nPress <ENTER> to see results' )
