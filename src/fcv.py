@@ -152,7 +152,6 @@ def main():
 	for card in pickled_deck:
 		card.sessions_since_last_seen += 1
 
-	# session = random.sample( pickled_deck, num_cards )
 	session = sample( pickled_deck, num_cards )
 	session_stats = { 'attempts' : 0, 'correct' : 0, 'incorrect' : 0, 'peeks' : 0 }
 	continue_playing = True
