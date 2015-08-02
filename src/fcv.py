@@ -129,9 +129,9 @@ def sample(deck, num_cards):
 
 def main():
 	deck_name = get_deck_name()
-	deck_filename = '../Decks/{}.txt'.format(deck_name)
-	pickle_filename = '../Pickles/{}_pickled.txt'.format(deck_name)
-	results_filename = '../Results/{}_results.txt'.format(deck_name)
+	deck_filename = '../decks/{}.txt'.format(deck_name)
+	pickle_filename = '../pickles/{}_pickled.txt'.format(deck_name)
+	results_filename = '../results/{}_results.txt'.format(deck_name)
 
 	[deck, pickled_deck, common_cards, new_cards, removed_cards] = load_and_update_deck( pickle_filename, deck_filename )
 
