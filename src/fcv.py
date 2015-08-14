@@ -1,11 +1,17 @@
 # Flashcard Viewer
 
+import os
 import pickle
 import random
 import sys
 
 import DeckReader
 import TabulateResults
+
+DECKS_DIR_NAME = 'decks'
+PICKLES_DIR_NAME = 'pickles'
+RESULTS_DIR_NAME = 'results'
+
 
 def _get_card_by_clue(clue):
 	for card in deck:
@@ -46,9 +52,6 @@ def get_num_cards_this_session(minimum, maximum):
 		except:
 			limit = 0
 	return limit
-
-def _parse_args(args):
-	pass
 
 def play_card(card, session_stats):
 	response = input( '{}? [C:{} I:{} P:{} LS:{}] '.format(card.clue, card.correct, card.incorrect, card.peeks, card.sessions_since_last_seen) ).upper()
@@ -129,10 +132,12 @@ def sample(deck, num_cards):
 
 def main():
 	deck_name = get_deck_name()
-	deck_filename = '../decks/{}.txt'.format(deck_name)
-	pickle_filename = '../pickles/{}_pickled.txt'.format(deck_name)
-	results_filename = '../results/{}_results.txt'.format(deck_name)
+	deck_filename = '../{}/{}.txt'.format(DECKS_DIR_NAME, deck_name)
+	pickle_filename = '../{}/{}_pickled.txt'.format(PICKLES_DIR_NAME, deck_name)
+	results_filename = '../{}/{}_results.txt'.format(RESULTS_DIR_NAME, deck_name)
 
+	for dir in [DECKS_DIR_NAME, PICKLES_DIR_NAME, RESULTS_DIR_NAME]:
+		os.makedirs('{}/../{}'.format(os.getcwd(), dir), exist_ok=True)
 	[deck, pickled_deck, common_cards, new_cards, removed_cards] = load_and_update_deck( pickle_filename, deck_filename )
 
 	if new_cards:
