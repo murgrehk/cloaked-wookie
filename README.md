@@ -21,7 +21,7 @@ To add cards to a deck:
 1. Open the `.txt` file corresponding to the deck
 2. Add the card’s clue and answers on a new line, following the format
 
-	`CLUE; ANSWER_1, ANSWER_`2
+	`CLUE; ANSWER_1, ANSWER_2`
 
 3. Save the file
 
