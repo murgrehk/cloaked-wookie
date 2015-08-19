@@ -11,8 +11,8 @@ To use the Flashcard Viewer:
 3. When prompted, enter the name of the .txt file containing the deck you want to play (leave off the .txt extension) and the number of cards you want to play
 
 Note:
--You may quit answering cards at any time by entering QUIT
--You may see the answer without a penalty by entering PEEK
+- You may quit answering cards at any time by entering QUIT
+- You may see the answer without a penalty by entering PEEK
 
 To add a deck:
 
@@ -28,5 +28,5 @@ To add cards to a deck:
 3. Save the file
 
 Note:
--Answers are separated by commas, and the preferred answer is given first
--Upon using the modified deck, the Flashcard Viewer should note any cards that were added or removed
+- Answers are separated by commas, and the preferred answer is given first
+- Upon using the modified deck, the Flashcard Viewer should note any cards that were added or removed
