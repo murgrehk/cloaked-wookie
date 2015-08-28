@@ -11,6 +11,7 @@ To use the Flashcard Viewer:
 Note:
 - You may quit answering cards at any time by entering `QUIT` as your answer
 - You may see the answer without a penalty by entering `PEEK` as your answer
+- The information displayed next to the clue corresponds to the number of times the card was answered correctly, incorrectly, or peeked. LS states how many sessions ago the card was last seen
 
 To add a deck:
 
@@ -26,5 +27,5 @@ To add cards to a deck:
 3. Save the file
 
 Note:
-- Answers are separated by commas, and the preferred answer is given first
+- Answers in the deck file are separated by commas, and the preferred answer is given first
 - Upon using the modified deck, the Flashcard Viewer should note any cards that were added or removed
