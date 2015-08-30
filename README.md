@@ -1,7 +1,5 @@
 Seth Ebner
 
-Last Modified: 14 July 2015
-
 To use the Flashcard Viewer:
 
 1. Download the ZIP file
